@@ -1,38 +1,53 @@
-@charset "utf-8";
-/* CSS Document */
-
 label, button {
 	clear: both;
 	float: left;
 	margin: 15px 10px;
 }
+body{
 
-label {
-	width: 150px;
+	font-size: 1.2em;
 }
 
-input, select, textarea {
-	float: left;
-	outline: none;
-	border: 1px solid #000;
-	margin: 15px 10px;
-	padding: 3px;
-}
+
+
 
 div {
-	padding: 10px;
-	margin:30px;
-	background-color: #787878;
+	padding: 5px;
+	margin:10px;
 	overflow: hidden;
 }
 
-table {
-	border-spacing: 10px 5px;
+h1{
+	background-color: #6e6eb5;
+	border: 0.3em solid;
 }
 
-td {
-	border: 1px solid blue;
-	padding: 5px;
-	background-color: #606060;
-	color: white;
+.formulari {
+	opacity: 0.8;
+	border: 0.5em solid;
+	text-align: center;
+	
+	margin-left: 25em;
+	margin-right: 25em;
+}
+
+.inputs {
+	padding-top: 10px;
+	border-bottom: 0.1em solid;
+	border-top: 0em solid;
+	border-left: 0em solid;
+	font-size: 1em;
+
+}
+.borde {
+	background-color: #d29b9b;
+	width: 95%
+}
+
+.font {
+	font-size: 0.6em;
+}
+
+.width {
+	width: 95%;
 }
