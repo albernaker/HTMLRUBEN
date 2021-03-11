@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<title>Acceso</title>
+		<link rel="icon" type="image/png" href="images/favicon.png">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
+	<body class="bg-faded">
+		<div class="container mt-5" id="contenedor">
+
+			<div class="row" id="row-titulo">
+				
+				<div class="col-6 offset-3 p-3 bg-success d-flex-column rounded-top" id="div-titulo">
+					
+					<img src="images/candado.png" class="w-25 d-flex mx-auto my-3" id="icono" alt="icono">
+					<h1 class="text-white text-center" id="titulo">Iniciar sesión</h1>
+
+				</div>
+			
+			</div>
+			
+			<div class="row" id="row-formulario">
+
+				<div class="col-6 offset-3 p-3 bg-success rounded-bottom" id="div-formulario">
+					
+					<form id="formulario" name="formulario" action="login.php" method="post">
+						
+						<div class="form-group" id="form-group-usuario">
+							<input type="text" onfocus="canviarclassUsuari(this)" class="form-control form-control-lg text-primary mx-auto my-3 w-75" id="usuario" name="usuario" placeholder="nombre de usuario">
+						</div>
+						
+						<div class="form-group" id="form-group-contrasena">
+							<input type="text" onfocus="canviarclassContrasena(this)" class="form-control form-control-lg text-primary mx-auto my-3 w-75" id="contrasena" name="contrasena" placeholder="contraseña">
+						</div>
+						
+						<div class="form-check pl-4 w-75 mx-auto  my-3" id="form-group-recuperar">
+							<input type="checkbox" onclick="canviarcontrasenya()"  class="form-check-input" id="recuperar" name="recuperar">
+							<label class="text-muted" for="recuperar">No recuerdo la contraseña, necesito recuperarla</label>
+						</div>
+						
+						<div class="form-group w-75 mx-auto text-right" id="form-group-enviar">
+							<button type="button" class="btn btn-lg btn-primary mb-3" id="enviar" name="enviar" style="opacity: 0.6;">Enviar</button>
+						</div>
+					<div id="error1">
+					</div>
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<div class="container mt-5 d-none" id="contenedor2">
+
+			<div class="row" id="row-titulo">
+				
+				<div class="col-6 offset-3 p-3 bg-success d-flex-column rounded-top" id="div-titulo">
+					
+					<img src="images/olvido.png" class="w-25 d-flex mx-auto my-3" id="icono" alt="icono">
+					<h1 class="text-white text-center" id="titulo"> Recuperar contraseña</h1>
+
+				</div>
+			
+			</div>
+			
+			<div class="row" id="row-formulario">
+
+				<div class="col-6 offset-3 p-3 bg-success rounded-bottom" id="div-formulario">
+					
+					<form id="formulario" name="formulario" action="password.php" method="post">
+						
+						<div class="form-group" id="form-group-usuario">
+							<input type="text" onfocus="canviarclassEmail(this)" class="form-control form-control-lg text-primary mx-auto my-3 w-75" id="email" name="email" placeholder="correo electrónico">
+						</div>
+						
+						<div class="form-check pl-4 w-75 mx-auto  my-3" id="form-group-recuperar">
+							<input type="checkbox" class="form-check-input" id="recuperar3" name="recuperar">
+							<label class="text-muted" for="recuperar">Ya me acuerdo de la contraseña deseo volver donde antes, o ya envie el correo y ya tengo mi contraseña </label>
+						</div>
+						
+						<div class="form-group w-75 mx-auto text-right" id="form-group-enviar">
+							<button type="button" onclick="canviarIniciar()" class="btn btn-lg btn-primary mb-3" checked="checked" id="enviar1" name="enviar" style="opacity: 0.6;">Enviar</button>
+						</div>
+					<div id="error1">
+					
+</div>
+					</form>
+
+				</div>
+
+			</div>
+
+		<script src="js/jquery-3.5.1.slim.min.js"></script>
+	    <script src="js/popper.min.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+
+	    <script type="text/javascript">
+
+
+
+function canviarcontrasenya() {
+
+var recuperar1 = document.getElementById("recuperar").checked;
+
+	 if(recuperar1) {
+
+	 	checked = true;
+
+  document.getElementById("contenedor").classList.add("d-none");
+  document.getElementById("contenedor2").classList.remove("d-none");
+
+ 
+ }
+
+
+document.getElementById("enviar1").addEventListener("mouseenter", EnterImg);
+document.getElementById("enviar1").addEventListener("mouseleave", ExitImg);
+
+			function EnterImg() {
+				document.getElementById("enviar1").style.opacity = "1";
+				document.getElementById("enviar1").style.boxShadow = "0px 0px 40px #FFFFFF";
+			}
+
+			function ExitImg() {
+				document.getElementById("enviar1").style.opacity = "0.6";
+				document.getElementById("enviar1").style.boxShadow = "none";
+			}
+
+
+			
+}
+
+
+
+	 document.getElementById("enviar").addEventListener("mouseenter", EnterImg);
+document.getElementById("enviar").addEventListener("mouseleave", ExitImg);
+
+function EnterImg() {
+	document.getElementById("enviar").style.opacity = "1";
+	document.getElementById("enviar").style.boxShadow = "0px 0px 40px #FFFFFF";
+}
+
+function ExitImg() {
+	document.getElementById("enviar").style.opacity = "0.6";
+	document.getElementById("enviar").style.boxShadow = "none";
+}
+
+
+function canviarclassUsuari() {
+
+	document.getElementById("usuario").classList.remove("text-primary");
+	document.getElementById("usuario").classList.add("text-success");
+	document.getElementById("usuario").addEventListener("change", function() {
+	document.getElementById("usuario").classList.add("text-primary");
+	document.getElementById("usuario").classList.remove("text-success");
+
+});
+}
+
+function canviarclassContrasena() {
+
+	document.getElementById("contrasena").classList.remove("text-primary");
+	document.getElementById("contrasena").classList.add("text-success");
+	document.getElementById("contrasena").addEventListener("change", function() {
+	document.getElementById("contrasena").classList.add("text-primary");
+	document.getElementById("contrasena").classList.remove("text-success");
+
+});
+}
+
+
+
+
+function canviarclassEmail() {
+
+	document.getElementById("email").classList.remove("text-primary");
+	document.getElementById("email").classList.add("text-success");
+	document.getElementById("email").addEventListener("change", function() {
+	document.getElementById("email").classList.add("text-primary");
+	document.getElementById("email").classList.remove("text-success");
+
+});
+}
+
+document.getElementById("enviar").addEventListener("click" , function() {
+
+	campbuit();
+});
+
+
+
+function campbuit() {
+
+	var usuari = document.getElementById("usuario").value;
+	var contrasena = document.getElementById("contrasena").value;
+
+	var debesindicar = '<div class="alert alert-danger" role="alert">Debes indicar el nombre de usuario y la contraseña</div>'
+
+console.log(usuari);
+console.log(contrasena);
+
+if (usuari === "" || contrasena ==="") {
+document.getElementById("error1").classList.remove("d-none");
+	document.getElementById("error1").innerHTML = debesindicar;
+}
+
+
+else {
+
+	document.getElementById("error1").classList.add("d-none");
+}
+
+
+}
+
+
+	    </script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+label, button {
+	clear: both;
+	float: left;
+	margin: 15px 10px;
+}
+
+label {
+	width: 150px;
+}
+
+input, select, textarea {
+	float: left;
+	outline: none;
+	border: 1px solid #000;
+	margin: 15px 10px;
+	padding: 3px;
+}
+
+div {
+	padding: 10px;
+	margin:30px;
+	background-color: #787878;
+	overflow: hidden;
+}
+
+table {
+	border-spacing: 10px 5px;
+}
+
+td {
+	border: 1px solid blue;
+	padding: 5px;
+	background-color: #606060;
+	color: white;
+}
