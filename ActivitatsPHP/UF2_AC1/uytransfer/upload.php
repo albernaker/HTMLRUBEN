@@ -23,9 +23,11 @@ if (empty($_POST) == false) {
 
 
 if ( $_FILES["Adjuntar"]["error"] == 0) {
-
   $nombreArchivo = $_FILES["Adjuntar"]["name"];
-  echo "<p>Hola el archivo es  $nombreArchivo </p>";
+  echo "<p>Hola el archivo es  $nombreArchivo i se ha enviado correctamente</p>";
+
+  echo "<img src='images/masv_03.jpg'>";
+
 
 }
 

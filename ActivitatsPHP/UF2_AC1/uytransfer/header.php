@@ -1,16 +1,22 @@
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>PHP</title>
-		<link rel="stylesheet" type="text/css" href="CSS/estilos.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body >
 
-	<body>
-		<div>
-		<h1>Uy!transfer</h1>
-		<table>
-		<h3>Ultimos archivos</h3>
-		<h3>Enviar archivo</h3>
-		</div>
-</body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">UyTransfer</a>
+    </div>
+    <ul class="nav navbar-nav margin-right">
+      <li class="active "><a href="#">Historial Archivos</a></li>
+      <li><a href="#">Subir archivo</a></li>
+    </ul>
+  </div>
+</nav>
