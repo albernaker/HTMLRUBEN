@@ -9,27 +9,37 @@ body{
 }
 
 
-
-
 div {
 	padding: 5px;
 	margin:10px;
 	overflow: hidden;
 }
 
-h1{
-	background-color: #6e6eb5;
-	border: 0.3em solid;
+.taula{
+
+padding: 30px;
+width: 100%;
+margin: 0em;
 }
-h4{
-	background-color: #6e6eb5;
+
+
+img{
+	padding-left: 3em;
+	width: 30em;
 }
+
+tr{
+margin: 0px;
+padding: 0px; 
+}
+
+
+
 
 .formulari {
 	opacity: 0.8;
 	border: 0.5em solid;
 	text-align: center;
-	
 	margin-left: 25em;
 	margin-right: 25em;
 }
