@@ -1,6 +1,6 @@
 <html>
 	<head>
-  <title>Bootstrap Example</title>
+  <title>UyTransfer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
       <a class="navbar-brand" href="#">UyTransfer</a>
     </div>
     <ul class="nav navbar-nav margin-right">
-      <li class="active "><a href="#">Historial Archivos</a></li>
+      <li class="active "><a href="history.php">Historial Archivos</a></li>
       <li><a href="#">Subir archivo</a></li>
     </ul>
   </div>
