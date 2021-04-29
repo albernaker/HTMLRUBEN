@@ -11,6 +11,7 @@
 		<script src="js/bootstrap.js"></script>
 	</head>
 	<body class="bg-primary">
+
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="index.php">
 				 <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
@@ -55,7 +56,44 @@
 						</div>
 					</li>
 				</ul>
-				<a href="entrar.php" class="btn btn-primary my-0 mx-2">Entrar</a>
-				<a href="form_client.php" class="btn btn-outline-primary my-0">Nou client</a>
+
+
+
+		<?php
+
+session_start();
+
+		require "config.php";
+
+if (isset($_SESSION["user"])) {
+	$sql = "SELECT nom, cognoms FROM clients WHERE id_client = $_SESSION[user]";
+
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+		if ($row) {
+			$nombre = $row["nom"];
+			$apellidos = $row["cognoms"];
+
+		}
+
+		$nomcomplert = "$nombre $apellidos";
+
+		echo "<div class=\"text-white\">$nomcomplert </div>
+		<a href=\"tancar.php\" class=\"btn btn-primary my-0 mx-2\">Tancar Sessio</a>";
+}
+
+else {
+
+echo "			<a href=\"entrar.php\" class=\"btn btn-primary my-0 mx-2\">Entrar</a>
+				<a href=\"form_client.php\" class=\"btn btn-outline-primary my-0\">Nou client</a>";
+
+} 
+
+
+
+		?>
+
+
+
 			</div>
 		</nav>

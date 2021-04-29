@@ -30,7 +30,7 @@
 			echo "<p><a href='$url3'>$nom3</a></p>";
 			
 			
-					/* EXERCICI 6 */
+			/* EXERCICI 6 */
 			echo "<ul>";
 			$var = "Texto";
 			echo "<li>".gettype($var)."</li>";
@@ -117,34 +117,6 @@
 			//exercici_14();
 
 
- 	$noms = array("risto" => "12", "pau" => "15", "rever" => "19", "marc" => "23", "joan" => "32");
- 	array_unshift($noms, "13", "23");
- 	array_push($noms , "1", "999");
-
- 	$treurenom = array_shift($noms);
- 	$treurenom2 = array_pop($noms);
-
- 	foreach ($noms as $key => $value) {
- 		echo "<p><strong>$key</strong>:$value</p>";
- 	}
-
-
-for($i = 0; $i <count($noms); $i++){
-	$suma = $suma + $noms[$i];
-		if($max < $noms[i]) {
-			$max = $noms[i];
-		}
-
-		if($min > $noms[i]) {
-			$mainx = $noms[i];
-		}
-}
-	$media = $suma / count($noms);
-	echo "<p><strong>$media</strong></p>";
-	echo "<p><strong>$max</strong></p>";
-	echo "<p><strong>$min</strong></p>";
-
-
 
 			/* EXERCICI 16 */
 			//include "librerias/no-existo.php";
@@ -159,12 +131,39 @@ for($i = 0; $i <count($noms); $i++){
 			exercici_18("Toni");
 			exercici_18();
 
+			/* EXERCICI 20 */
+			$miNomina = nomina(2000);
+			echo $miNomina;
 
 
+			/* EXERCICI 22 */
+			$edats = array(25, 6, 19, 84, 37);
+			
+			echo "<p>Contingut de l'array: ";
+			var_dump($edats);
+			echo "</p>";
 
 
+			/* EXERCICI 23 */
+			array_push($edats, 33);
+			array_unshift($edats, 2);
 
-		
+			echo "<p>Contingut de l'array: ";
+			print_r($edats);
+			echo "</p>";
+
+
+			/* EXERCICI 24 */
+			echo "<p>Contingut de l'array: ";
+			print_r($edats);
+			echo "</p>";
+
+
+			/* EXERCICI 26 */
+			$productes = array("Tesla" => 45000, "MacBookPro" => 3800,
+						"Bitcoins" => 383456, "Coca-Cola" => 0.55,
+						"Master" => 9800);
+			
 		?>
 
 	</body>
