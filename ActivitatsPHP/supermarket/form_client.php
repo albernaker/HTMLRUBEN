@@ -18,18 +18,150 @@ if(!empty($_POST)){
 
 	else {
 
-$username=" ";
+$username="";
 $pass = "";
 $rp_pass = "";
-$nombre =" ";
-$apellidos = " ";
-$nif = " ";
-$direccion = " ";
-$codigo_postal = " ";
-$mail = " ";
-$poblacion = " ";
-$telefono = " ";	
+$nombre ="";
+$apellidos = "";
+$nif = "";
+$direccion = "";
+$codigo_postal = "";
+$mail = "";
+$poblacion = "";
+$telefono = "";	
 	}
+
+
+require "common/validacions.php";
+
+if (isset($_SESSION["user"])) {
+
+	
+	$sql = "SELECT * FROM clients WHERE id_client = $_SESSION[user]";
+$result = $conn->query($sql);
+
+if($result) {
+
+	if ($result->num_rows > 0) {
+
+
+	$row = $result->fetch_assoc();
+
+
+$mail = $row["email"];
+$username = $row["nom_usuari"];
+$pass = $row["contrasenya"];
+$rp_pass = $row["contrasenya"];
+$nombre = $row["nom"];
+$apellidos = $row["cognoms"];
+$nif = $row["nif"];
+$direccion = $row["adreca"];
+$codigo_postal = $row["codi_postal"];
+$telefono = $row["telefon"];
+$poblacion = $row["poblacio"];	
+
+
+
+}
+}
+}
+
+if (!empty($_POST)) {
+
+if (empty($_POST["username"]) || empty($_POST["pass"]) || empty($_POST["rp_pass"]) || empty($_POST["nombre"]) || empty($_POST["apellidos"]) || empty($_POST["nif"]) || empty($_POST["direccion"]) || empty($_POST["poblacion"])) {
+
+	echo "<div class=\"text-danger alert alert-danger\">Introdueix les dades obligatories!</div>";
+
+}
+	else {
+
+$correcteNU = false;
+$correcteRPpass = false;
+$correctePass = false;
+$correcteNif = false;
+$correcteEmail = false;
+
+ 
+
+				if  (nomUsuariValid($_POST["username"])) {
+						$correcteNU = true;
+					}
+
+				else {
+	echo "<div class=\"text-danger alert alert-danger\">El nom d'usuari es incorrecte!</div>";
+
+				}
+
+						if($_POST["pass"]==$_POST["rp_pass"]) {
+							$correcteRPpass = true;
+						}
+							else {
+	echo "<div class=\"text-danger alert alert-danger\">Les contrasenyes no son iguals</div>";
+							}
+
+							if(seguretatContrasenya($_POST["pass"]) == 3){
+								$correctePass = true;
+							}
+									else {
+	echo "<div class=\"text-danger alert alert-danger\">Les contrasenyes no son segures</div>";
+									}
+
+			if(NIFValid($_POST["nif"]) == true) {
+										$correcteNif = true;
+
+									}
+											else {
+	echo "<div class=\"text-danger alert alert-danger\">El nif no es valid</div>";
+											} 
+
+										if(esEmail($_POST["mail"]) == true) {
+										$correcteEmail = true;
+
+									}
+											else {
+	echo "<div class=\"text-danger alert alert-danger\">El email no es valid</div>";
+											}
+
+											if (($correcteNU == true) && ($correcteEmail == true) && ($correcteRPpass == true) && ($correctePass == true) && ($correcteNif = true)) {
+											
+
+										$mail = $_POST["mail"];
+										$username = $_POST["username"];
+										$pass = $_POST["pass"];
+										$rp_pass = $_POST["rp_pass"];
+										$nombre = $_POST["nombre"];
+										$apellidos = $_POST["apellidos"];
+										$nif = $_POST["nif"];
+										$direccion = $_POST["direccion"];
+										$codigo_postal = $_POST["codigo_postal"];
+										$mail = $_POST["mail"];
+										$telefono = $_POST["telefono"];
+										$poblacion = $_POST["poblacion"];	
+
+
+										$sql =  " INSERT INTO clients(nom_usuari, contrasenya, nom, cognoms, nif, adreca, codi_postal, poblacio, telefon, email)
+										
+
+										VALUES('$username', '$pass', '$nombre', '$apellidos', '$nif', '$direccion', '$codigo_postal', '$poblacion', '$telefono', '$mail')";
+
+
+
+										$result = $conn->query($sql);
+
+
+														if ($result) {
+															header("Location: entrar.php");
+														}
+
+														else {
+echo "<div class=\"text-danger alert alert-danger\">Hi han dades que ja estan introduides, possiblement ja estas registrat</div>";
+														}
+
+									}
+
+
+ 	}
+}
 
 
 ?>
@@ -79,14 +211,12 @@ $telefono = " ";
 							<label for="poblacion">Població (obligatori):</label>
 							<select class="form-control" name="poblacion" id="poblacion">
 								<option value="">Selecciona una opció</option>
+								
 
 
 <?php
 
 require "config.php";
-
-
-
 
 
 $conn = new mysqli($nomservidor, $nomusuari, $password, $dbname);
@@ -132,117 +262,11 @@ while($row) {
 							<button type="submit" class="btn btn-default">Enviar</button>
 						</div>
 
-
-
-
-
-
-
-
 					</div>
 				</div>
 			</form>
 		</div>
 
-
-
-		<?php
-
-
-
-
-
-require "common/validacions.php";
-
-if (!empty($_POST)) {
-
-
- 
-
-				if  (nomUsuariValid($_POST["username"])) {
-						echo "el nom d'usuari es correcte<br>";
-
-
-						if($_POST["pass"]==$_POST["rp_pass"]) {
-							echo "la password es igual a la rp_pass <br>";
-
-							if(seguretatContrasenya($_POST["pass"]) == 3){
-								echo "la seguretat Contrasenya es correcte <br>";
-
-
-									if(NIFValid($_POST["nif"])==true ) {
-									echo "el nif es correcte <br>";
-
-										if(esEmail($_POST["mail"]) == true) {
-										echo "el email esta validat i tot esta correcte <br>";
-
-										$mail = $_POST["mail"];
-										$username = $_POST["username"];
-										$pass = $_POST["pass"];
-										$rp_pass = $_POST["rp_pass"];
-										$nombre = $_POST["nombre"];
-										$apellidos = $_POST["apellidos"];
-										$nif = $_POST["nif"];
-										$direccion = $_POST["direccion"];
-										$codigo_postal = $_POST["codigo_postal"];
-										$mail = $_POST["mail"];
-										$telefono = $_POST["telefono"];
-										$poblacion = $_POST["poblacion"];	
-
-
-										$sql =  " INSERT INTO clients(nom_usuari, contrasenya, nom, cognoms, nif, adreca, codi_postal, poblacio, telefon, email)
-										
-
-										VALUES('$username', '$pass', '$nombre', '$apellidos', '$nif', '$direccion', '$codigo_postal', '$poblacion', '$telefono', '$mail')";
-
-										echo "$sql";
-
-										$result = $conn->query($sql);
-
-
-														if ($result) {
-															echo "Insertados correctamente";
-														}
-
-														else {
-															echo "Error al insertar";
-															}	
-													}
-
-
-										else {
-										echo "el email no es valid <br>";
-										}
-											}
-									else {
-									echo "el nif no es valit <br>";
-									}
-										}
-							else {
-							echo "la contrasenya no es segura <br>";
-							}
-								}
-						else {
-						echo "la contrasenya no es igual a la repeat pas <br>";
-						}
-							}
-				else {
-				echo "el nom d'usuari es incorrecte <br>";
-				}
-									
-		}
-
-
-else {
-echo "Has d'introduir les dades obligatories!";
-
-
-
-		}
-
-
-
-?>
 
 	
 	</body>

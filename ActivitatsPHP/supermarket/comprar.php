@@ -1,6 +1,5 @@
 <?php
 	require "header.php";
-	session_start();
 
 	$categoria = "";
 	if (isset($_GET["categoria"])) {
@@ -39,16 +38,18 @@
 				</div>
 				<div class="col-8">
 					<h3 class="text-white">Els nostres productes</h3>
-					<table class="table">        
+					<table class="table">    
+						<tr> 
+							<th>Producte</th> 
+							<th>Categoria</th>
+							<th class="text-right">Preu</th>
+							<th></th>
+						</tr>
+						<tr>     
 
 <?php
 
 require "config.php";
-
-
-	if ($conn->connect_error) {
-			die("ERROR al connectar con la base de datos");
-			}
 
 if (isset($_GET["cat"])) {
 
@@ -65,7 +66,6 @@ if($result) {
 
 	if ($result->num_rows > 0) {
 
-		echo "string";
 
 	$row = $result->fetch_assoc();
 		
@@ -140,13 +140,7 @@ if ($row["categoria"] == 1) {
 
 
 ?>
-						<tr> 
-							<th>Producte</th> 
-							<th>Categoria</th>
-							<th class="text-right">Preu</th>
-							<th></th>
-						</tr>
-						<tr> 
+					
 							
 							</td> 
 						</tr>

@@ -12,6 +12,26 @@
 	</head>
 	<body class="bg-primary">
 
+		<?php 
+
+
+		require "config.php";
+			session_start();
+
+if (isset($_SESSION["user"])) {
+	$sql = "SELECT nom, cognoms FROM clients WHERE id_client = $_SESSION[user]";
+
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+		if ($row) {
+			$nombre = $row["nom"];
+			$apellidos = $row["cognoms"];
+
+		}
+			}
+
+		 ?>
+
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="index.php">
 				 <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
@@ -32,13 +52,13 @@
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Clients
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink\">
 							<a class="dropdown-item" href="form_client.php">Modificar les meves dades</a>
 							<a class="dropdown-item" href="tancar.php">Tarcar la sessió</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink\" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Comandes
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -46,40 +66,71 @@
 							<a class="dropdown-item" href="index.php">Historial de comandes</a>
 						</div>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		
+
+						<?php 
+
+		require "config.php";
+
+
+if (isset($_SESSION["user"])) {
+
+$sql = "SELECT nom, cognoms,id_client, nom_usuari FROM clients WHERE id_client = $_SESSION[user]";
+
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+		if ($row) {		
+			$nombre = $row["nom"];
+			$apellidos = $row["cognoms"];
+			$id_client = $row["id_client"];
+			$nom_usuari = $row["nom_usuari"];
+
+		}
+
+
+							if ($nom_usuari == 'albernaker49' ) {
+								
+							
+
+							echo " 
+					<li class=\"nav-item dropdown\">
+						<a class=\"nav-link dropdown-toggle\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
 							Gestió de productes
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="form_producte.php">Nou producte</a>
-							<a class="dropdown-item" href="productes.php">Editar productes</a>
+						<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
+							<a class=\"dropdown-item\" href=\"form_producte.php\">Nou producte</a>
+							<a class=\"dropdown-item\" href=\"productes.php\">Editar productes</a>
 						</div>
-					</li>
+					</li>";
+				}
+			} 
+
+						 ?>
+
+
+
 				</ul>
 
 
 
 		<?php
-
-session_start();
-
-		require "config.php";
-
+		
 if (isset($_SESSION["user"])) {
-	$sql = "SELECT nom, cognoms FROM clients WHERE id_client = $_SESSION[user]";
+
+		$sql = "SELECT * FROM clients WHERE id_client = $_SESSION[user]";
 
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
-		if ($row) {
+		if ($row) {		
 			$nombre = $row["nom"];
 			$apellidos = $row["cognoms"];
 
-		}
 
 		$nomcomplert = "$nombre $apellidos";
 
 		echo "<div class=\"text-white\">$nomcomplert </div>
 		<a href=\"tancar.php\" class=\"btn btn-primary my-0 mx-2\">Tancar Sessio</a>";
+}
 }
 
 else {
@@ -88,7 +139,6 @@ echo "			<a href=\"entrar.php\" class=\"btn btn-primary my-0 mx-2\">Entrar</a>
 				<a href=\"form_client.php\" class=\"btn btn-outline-primary my-0\">Nou client</a>";
 
 } 
-
 
 
 		?>

@@ -1,8 +1,56 @@
 <?php
+
 	require "header.php";
 
+if (empty($_POST)) {
+	
+$_POST["username"] = " ";
+$_POST["pass"]= " ";
 
-	?>
+}
+
+else {
+
+		$usuari = $_POST["username"];
+		$contrasenya = $_POST["pass"];
+
+		$sql = "SELECT *  FROM clients
+				WHERE nom_usuari = '$usuari' AND contrasenya = '$contrasenya'";
+		
+		$result = $conn->query($sql);
+
+if (!$result) {
+die("La base de dades no dona resultats");
+}
+
+$row = $result->fetch_assoc();
+
+if ($row) {
+			
+			$_SESSION["user"] = $row["id_client"];
+
+			header("Location: index.php");
+
+				
+			}
+			else{
+				echo "<div class=\"text-danger alert alert-danger\">Les dades no son correctes</div>";
+				
+			}
+
+
+		$conn->close();
+
+/*	if ($incioSesion) {
+		header("Location: index.php");
+	} else {
+		header("Location: entrar.php");
+	}
+*/
+
+}
+?>
+
 		<div class="container m-5 mx-auto col-4 offset-4 text-white">
 			<form action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 				<div class="form-group">
@@ -19,60 +67,6 @@
 			</form>
 
 		</div>
-
-<?php
-
-
-if (empty($_POST)) {
-	
-$_POST["username"] = " ";
-$_POST["pass"]= "";
-
-}
-
-
-if (isset($_POST)) {
-
-		$usuario = $_POST["username"];
-		$contrasenya = $_POST["pass"];
-
-		$sql = "SELECT id_client  FROM clients
-				WHERE nom_usuari = '$usuario' AND contrasenya = '$contrasenya'";
-		
-		$result = $conn->query($sql);
-
-if (!$result) {
-die("La base de dades no dona resultats");
-}
-
-
-
-		$row = $result->fetch_assoc();
-		if ($row) {	
-			
-			$_SESSION["user"] = $row["id_client"];
-
-			header("Location: index.php");
-
-				
-			}
-			else{
-				echo "Les dades no son correctes";
-				
-			}
-
-
-		$conn->close();
-
-/*	if ($incioSesion) {
-		header("Location: index.php");
-	} else {
-		header("Location: entrar.php");
-	}
-*/
-
-}
-?>
 
 
 	</body>

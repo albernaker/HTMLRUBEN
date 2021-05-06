@@ -70,7 +70,11 @@ function NIFValid($pNIF) {
 		$lletraNIF = strtoupper(substr($pNIF, 8));
 		$lletraObtinguda = substr($lletres, $numero % 23, 1);
 
-		if ($lletraNIF == $lletraObtinguda) $valid = true;
+		if ($lletraNIF == $lletraObtinguda) {
+
+		$valid = true;
+
+		} 
 	}
 
 	return $valid;

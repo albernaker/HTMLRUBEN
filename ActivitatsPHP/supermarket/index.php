@@ -1,10 +1,6 @@
 <?php
 	require "header.php";
 
-
-
-
-
 	
 ?>
 		<div class="container m-5 mx-auto">
